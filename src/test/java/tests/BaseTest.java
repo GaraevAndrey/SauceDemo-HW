@@ -12,6 +12,8 @@ import page.LoginPage;
 import page.ProductPage;
 import utils.TestListener;
 
+import java.util.concurrent.TimeUnit;
+
 @Listeners(TestListener.class)
 public class BaseTest {
     WebDriver driver;
@@ -32,6 +34,7 @@ public class BaseTest {
             driver = new EdgeDriver(options);
         }
         driver.get("https://www.saucedemo.com/");
+        driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
         context.setAttribute("driver", driver);
         loginPage = new LoginPage(driver);
         productPage = new ProductPage(driver);
