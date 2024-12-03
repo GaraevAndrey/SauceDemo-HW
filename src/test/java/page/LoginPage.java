@@ -14,13 +14,13 @@ public class LoginPage extends BasePage {
     private final By ERROR3 = By.xpath("//h3[@data-test='error']");
     private final By ERROR4 = By.xpath("//h3[@data-test='error']");
 
-    public LoginPage(WebDriver browser) {
-        super(browser);
+    public LoginPage(WebDriver driver) {
+        super(driver);
     }
 
     @Step("Открытие браузера")
     public void open() {
-        browser.get(BASE_URL);
+        driver.get(BASE_URL);
     }
 
     @Step("Вводим данные {user} и {password}")
@@ -32,36 +32,36 @@ public class LoginPage extends BasePage {
 
     //@Step("Вводим логин")
     public void fillUserInput(String user) {
-        browser.findElement(USERNAME_INPUT).sendKeys(user);
+        driver.findElement(USERNAME_INPUT).sendKeys(user);
     }
 
     //@Step("ВВодим пароль")
     public void fillPasswordInput(String password) {
-        browser.findElement(PASSWORD_INPUT).sendKeys(password);
+        driver.findElement(PASSWORD_INPUT).sendKeys(password);
     }
 
     @Step("Кликаем на кнопку логин")
     public void clickSubmitBtn() {
-        browser.findElement(LOGIN_BUTTON).click();
+        driver.findElement(LOGIN_BUTTON).click();
     }
 
     @Step("Получаем текст из сообщения об ошибке")
     public String getERROR() {
-        return browser.findElement(ERROR).getText();
+        return driver.findElement(ERROR).getText();
     }
 
     @Step("Получаем текст из сообщения об ошибке")
     public String getERROR2() {
-        return browser.findElement(ERROR2).getText();
+        return driver.findElement(ERROR2).getText();
     }
 
     @Step("Получаем текст из сообщения об ошибке")
     public String getERROR3() {
-        return browser.findElement(ERROR3).getText();
+        return driver.findElement(ERROR3).getText();
     }
 
     @Step("Получаем текст из сообщения об ошибке")
     public String getERROR4() {
-        return browser.findElement(ERROR4).getText();
+        return driver.findElement(ERROR4).getText();
     }
 }
