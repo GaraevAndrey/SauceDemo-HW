@@ -4,7 +4,6 @@
     <test name="Thread #1">
         <classes>
             <class name="tests.LoginTest"/>
-
         </classes>
     </test> <!-- Test -->
     <test name="Thread #2">

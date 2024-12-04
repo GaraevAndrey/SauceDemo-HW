@@ -4,7 +4,6 @@
     <test name="Chrome">
         <classes>
             <class name="tests.LoginTest"/>
-
         </classes>
     </test> <!-- Test -->
     <test name="Edge">

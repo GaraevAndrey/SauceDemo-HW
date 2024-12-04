@@ -1,6 +1,5 @@
 package tests;
 
-import com.google.j2objc.annotations.Property;
 import io.qameta.allure.Description;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.ITestContext;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import page.LoginPage;
 import page.ProductPage;
@@ -49,7 +49,7 @@ public class BaseTest {
 
     @AfterMethod
     @Description("Закрытие")
-    public void quit() {
+    public void close(ITestResult result) {
         driver.quit();
     }
 }

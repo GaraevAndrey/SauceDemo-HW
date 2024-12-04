@@ -3,7 +3,6 @@ package tests;
 import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import utils.AllureUtils;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -20,17 +19,16 @@ public class LoginTest extends BaseTest {
     public void correctLoginCheck() {
         loginPage.open();
         loginPage.login(user, password);
-       // AllureUtils.takeScreenshot(driver);
-        assertTrue(productPage.isDisplayed());
+        assertTrue(productPage.isDisplayed(), "");
         assertEquals("Products", productPage.getTITLE());
     }
 
     @DataProvider()
     public Object[][] loginData() {
         return new Object[][]{
-                {"standard_userr", "secret_sauce", "Epic sadface: Username and password do not match any user in this service"},
-                {"standard_user", " ", "Epic sadface: Username and password do not match any user in this service"},
-                {"locked_out_user", "secret_sauce", "Epic sadface: Sorry, this user has been locked out."},
+                {"standard_userr", password, "Epic sadface: Username and password do not match any user in this service"},
+                {user, " ", "Epic sadface: Username and password do not match any user in this service"},
+                {"locked_out_user", password, "Epic sadface: Sorry, this user has been locked out."},
                 {"", "", "Epic sadface: Username is required"}
         };
     }

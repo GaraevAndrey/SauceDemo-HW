@@ -16,7 +16,7 @@ public class ProductsTest extends BaseTest {
     @Test(description = "Проверка наличия товара в корзине")
     public void addGoods() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productPage.isOpened();
         productPage.addToCart("Sauce Labs Backpack");
         productPage.addToCart("Sauce Labs Bike Light");
