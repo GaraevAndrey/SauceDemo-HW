@@ -19,7 +19,7 @@ public class LoginTest extends BaseTest {
     @Test(description = "Авторизация под верными данными")
     public void correctLoginCheck() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
        // AllureUtils.takeScreenshot(driver);
         assertTrue(productPage.isDisplayed());
         assertEquals("Products", productPage.getTITLE());

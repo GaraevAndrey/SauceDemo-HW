@@ -1,5 +1,6 @@
 package tests;
 
+import com.google.j2objc.annotations.Property;
 import io.qameta.allure.Description;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,6 +11,7 @@ import org.testng.ITestContext;
 import org.testng.annotations.*;
 import page.LoginPage;
 import page.ProductPage;
+import utils.PropertyReader;
 import utils.TestListener;
 
 import java.util.concurrent.TimeUnit;
@@ -19,6 +21,8 @@ public class BaseTest {
     WebDriver driver;
     LoginPage loginPage;
     ProductPage productPage;
+    String user;
+    String password;
 
     @Parameters({"browser"})
     @BeforeMethod
@@ -38,6 +42,9 @@ public class BaseTest {
         context.setAttribute("driver", driver);
         loginPage = new LoginPage(driver);
         productPage = new ProductPage(driver);
+        System.setProperty("BASE_URL", PropertyReader.getProperty("sauceDemo-HW.url"));
+        user = PropertyReader.getProperty("sauceDemo-HW.user");
+        password = PropertyReader.getProperty("sauceDemo-HW.password");
     }
 
     @AfterMethod
