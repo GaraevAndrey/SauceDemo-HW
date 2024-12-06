@@ -3,7 +3,7 @@ package tests;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 public class ProductsTest extends BaseTest {
     @Epic("Модуль добавления товара в корзину")
@@ -25,5 +25,7 @@ public class ProductsTest extends BaseTest {
         assertTrue(productPage.getProductsNames().contains("Sauce Labs Backpack"));
         assertTrue(productPage.getProductsNames().contains("Sauce Labs Bike Light"));
         assertTrue(productPage.getProductsNames().contains("Sauce Labs Bolt T-Shirt"));
+        productPage.clickRemove();
+        assertEquals(productPage.cartIcon(), "2");
     }
 }

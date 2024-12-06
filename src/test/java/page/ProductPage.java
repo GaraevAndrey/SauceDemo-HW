@@ -21,6 +21,16 @@ public class ProductPage extends BasePage {
     private final By addToCartBtn = By.xpath("//*[text()='Add to cart']");
     private final By cartIcon = By.xpath("//*[@class='shopping_cart_link']");
     private final By goodsInCart = By.cssSelector(".inventory_item_name");
+    private final By removeClick = By.id("remove-sauce-labs-backpack");
+    private final By cart = By.xpath("//span[@data-test='shopping-cart-badge']");
+    private final By checkout = By.id("checkout");
+    private final By firstName = By.id("first-name");
+    private final By lastName = By.id("last-name");
+    private final By zipName = By.id("postal-code");
+    private final By continueButton = By.id("continue");
+    private final By FinishButton = By.id("finish");
+    private final By order = By.xpath("//h2[text()='Thank you for your order!']");
+    private final By ContinueShopping = By.id("continue-shopping");
 
     public String getTITLE() {
         return driver.findElement(TITLE).getText();
@@ -47,6 +57,56 @@ public class ProductPage extends BasePage {
         driver.findElement(cartIcon).click();
     }
 
+    @Step("Кликаем на кнопку Remove")
+    public void clickRemove() {
+        driver.findElement(removeClick).click();
+    }
+
+    @Step("Провряем количество товаров в корзине")
+    public String cartIcon() {
+        return driver.findElement(cart).getText();
+    }
+
+    @Step("Переход в раздел оформления заказа")
+    public void openCheckout() {
+        driver.findElement(checkout).click();
+    }
+
+    @Step("Вводим данные firstname")
+    public void writeFirstName() {
+        driver.findElement(firstName).sendKeys("Andrey");
+    }
+
+    @Step("Вводим данные lastname")
+    public void writeLastName() {
+        driver.findElement(lastName).sendKeys("Гараев");
+    }
+
+    @Step("Вводим данные postal code")
+    public void writeZip() {
+        driver.findElement(zipName).sendKeys("12345");
+    }
+
+    @Step("Кликаем на continue")
+    public void clickContinue() {
+        driver.findElement(continueButton).click();
+    }
+
+    @Step("Кликаем на finish")
+    public void clickFinish() {
+        driver.findElement(FinishButton).click();
+    }
+
+    @Step("Проверка вывода текста после заказа товара")
+    public String titleOrder() {
+        return driver.findElement(order).getText();
+    }
+
+    @Step("Кликаем на continue shopping")
+    public void openContinueShopping() {
+        driver.findElement(ContinueShopping).click();
+    }
+
     @Step("Провряем наличие добавленных товаров в корзине")
     public ArrayList<String> getProductsNames() {
         List<WebElement> allProductsNames = driver.findElements(goodsInCart);
@@ -55,7 +115,6 @@ public class ProductPage extends BasePage {
             names.add(product.getText());
         }
         return names;
-
     }
 
     @Step("Ожидание появления кнопки add to cart")
