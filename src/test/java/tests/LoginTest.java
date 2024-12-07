@@ -17,10 +17,11 @@ public class LoginTest extends BaseTest {
     @Description("Проверка входа в систему интернет-магазина")
     @Test(description = "Авторизация под верными данными")
     public void correctLoginCheck() {
-        loginPage.open();
-        loginPage.login(user, password);
+        loginPage
+                .open()
+                .login(user, password);
         assertTrue(productPage.isDisplayed(), "");
-        assertEquals("Products", productPage.getTITLE());
+        assertEquals("Products", productPage.getTitle());
     }
 
     @DataProvider()
@@ -35,8 +36,9 @@ public class LoginTest extends BaseTest {
 
     @Test(dataProvider = "loginData", description = "Авторизация под неверными данными")
     public void incorrectLoginCheck(String user, String pass, String errorMsg) {
-        loginPage.open();
-        loginPage.login(user, pass);
+        loginPage
+                .open()
+                .login(user, pass);
         assertEquals(loginPage.getERROR(), errorMsg);
     }
 }

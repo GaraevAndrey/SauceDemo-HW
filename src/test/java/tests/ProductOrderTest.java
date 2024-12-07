@@ -15,17 +15,19 @@ public class ProductOrderTest extends BaseTest {
     @Description("Заказ товара")
     @Test(description = "Заказ товара")
     public void addGoods() {
-        loginPage.open();
-        loginPage.login(user, password);
-        productPage.isOpened();
-        productPage.addToCart("Sauce Labs Backpack");
-        productPage.openCart();
-        productPage.openCheckout();
-        productPage.writeFirstName();
-        productPage.writeLastName();
-        productPage.writeZip();
-        productPage.clickContinue();
-        productPage.clickFinish();
+        loginPage
+                .open()
+                .login(user, password);
+        productPage
+                .isOpened()
+                .addToCart("Sauce Labs Backpack")
+                .openCart()
+                .openCheckout()
+                .writeFirstName()
+                .writeLastName()
+                .writeZip()
+                .clickContinue()
+                .clickFinish();
         assertEquals("Thank you for your order!", productPage.titleOrder());
     }
 }

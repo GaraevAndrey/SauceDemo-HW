@@ -9,22 +9,24 @@ public class LoginPage extends BasePage {
     private static final By USERNAME_INPUT = By.id("user-name");
     private static final By PASSWORD_INPUT = By.id("password");
     private static final By LOGIN_BUTTON = By.id("login-button");
-    private final By ERROR = By.xpath("//h3[@data-test='error']");
+    private final By error = By.xpath("//h3[@data-test='error']");
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
     @Step("Открытие браузера")
-    public void open() {
+    public LoginPage open() {
         driver.get(BASE_URL);
+        return this;
     }
 
     @Step("Вводим данные {user}, {password} и кликаем на кнопку логин")
-    public void login(String user, String password) {
+    public LoginPage login(String user, String password) {
         fillUserInput(user);
         fillPasswordInput(password);
         clickSubmitBtn();
+        return this;
     }
 
     public void fillUserInput(String user) {
@@ -41,6 +43,6 @@ public class LoginPage extends BasePage {
 
     @Step("Получаем текст из сообщения об ошибке")
     public String getERROR() {
-        return driver.findElement(ERROR).getText();
+        return driver.findElement(error).getText();
     }
 }

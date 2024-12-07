@@ -14,10 +14,9 @@ public class ProductPage extends BasePage {
     public ProductPage(WebDriver driver) {
         super(driver);
     }
-
-    private final By TITLE = By.xpath("//span[text()='Products']");
-    private final By TITLE2 = By.xpath("//span[text()='Products']");
-    private final String ADD_TO_CART_PATTERN = "//div[text()='%s']//ancestor::div[@class='inventory_item']//button";
+    private static final String ADD_TO_CART_PATTERN = "//div[text()='%s']//ancestor::div[@class='inventory_item']//button";
+    private final By titleProd = By.xpath("//span[text()='Products']");
+    private final By titleProd2 = By.xpath("//span[text()='Products']");
     private final By addToCartBtn = By.xpath("//*[text()='Add to cart']");
     private final By cartIcon = By.xpath("//*[@class='shopping_cart_link']");
     private final By goodsInCart = By.cssSelector(".inventory_item_name");
@@ -32,19 +31,20 @@ public class ProductPage extends BasePage {
     private final By order = By.xpath("//h2[text()='Thank you for your order!']");
     private final By ContinueShopping = By.id("continue-shopping");
 
-    public String getTITLE() {
-        return driver.findElement(TITLE).getText();
+    public String getTitle() {
+        return driver.findElement(titleProd).getText();
     }
 
     public boolean isDisplayed() {
-        driver.findElement(TITLE2).isDisplayed();
+        driver.findElement(titleProd2).isDisplayed();
         return true;
     }
 
     @Step("Добавление товара по названию")
-    public void addToCart(String product) {
+    public ProductPage addToCart(String product) {
         By addToCart = By.xpath(String.format(ADD_TO_CART_PATTERN, product));
         driver.findElement(addToCart).click();
+        return this;
     }
 
     @Step("Добавление товара по индексу")
@@ -53,13 +53,15 @@ public class ProductPage extends BasePage {
     }
 
     @Step("Открываем корзину")
-    public void openCart() {
+    public ProductPage openCart() {
         driver.findElement(cartIcon).click();
+        return this;
     }
 
     @Step("Кликаем на кнопку Remove")
-    public void clickRemove() {
+    public ProductPage clickRemove() {
         driver.findElement(removeClick).click();
+        return this;
     }
 
     @Step("Провряем количество товаров в корзине")
@@ -68,33 +70,39 @@ public class ProductPage extends BasePage {
     }
 
     @Step("Переход в раздел оформления заказа")
-    public void openCheckout() {
+    public ProductPage openCheckout() {
         driver.findElement(checkout).click();
+        return this;
     }
 
     @Step("Вводим данные firstname")
-    public void writeFirstName() {
+    public ProductPage writeFirstName() {
         driver.findElement(firstName).sendKeys("Andrey");
+        return this;
     }
 
     @Step("Вводим данные lastname")
-    public void writeLastName() {
+    public ProductPage writeLastName() {
         driver.findElement(lastName).sendKeys("Гараев");
+        return this;
     }
 
     @Step("Вводим данные postal code")
-    public void writeZip() {
+    public ProductPage writeZip() {
         driver.findElement(zipName).sendKeys("12345");
+        return this;
     }
 
     @Step("Кликаем на continue")
-    public void clickContinue() {
+    public ProductPage clickContinue() {
         driver.findElement(continueButton).click();
+        return this;
     }
 
     @Step("Кликаем на finish")
-    public void clickFinish() {
+    public ProductPage clickFinish() {
         driver.findElement(FinishButton).click();
+        return this;
     }
 
     @Step("Проверка вывода текста после заказа товара")
@@ -103,8 +111,9 @@ public class ProductPage extends BasePage {
     }
 
     @Step("Кликаем на continue shopping")
-    public void openContinueShopping() {
+    public ProductPage openContinueShopping() {
         driver.findElement(ContinueShopping).click();
+        return this;
     }
 
     @Step("Провряем наличие добавленных товаров в корзине")
@@ -118,7 +127,8 @@ public class ProductPage extends BasePage {
     }
 
     @Step("Ожидание появления кнопки add to cart")
-    public void isOpened() {
+    public ProductPage isOpened() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(addToCartBtn));
+        return this;
     }
 }

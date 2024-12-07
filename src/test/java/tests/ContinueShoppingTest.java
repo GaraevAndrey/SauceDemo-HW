@@ -15,14 +15,16 @@ public class ContinueShoppingTest extends BaseTest {
     @Description("Возврат к катологу товаров")
     @Test(description = "Возврат к катологу товаров")
     public void addGoods() {
-        loginPage.open();
-        loginPage.login(user, password);
+        loginPage
+                .open()
+                .login(user, password);
         productPage.isOpened();
-        productPage.addToCart("Sauce Labs Backpack");
-        productPage.addToCart("Sauce Labs Bike Light");
-        productPage.addToCart("Sauce Labs Bolt T-Shirt");
-        productPage.openCart();
-        productPage.openContinueShopping();
-        assertEquals("Products", productPage.getTITLE());
+        productPage
+                .addToCart("Sauce Labs Backpack")
+                .addToCart("Sauce Labs Bike Light")
+                .addToCart("Sauce Labs Bolt T-Shirt")
+                .openCart()
+                .openContinueShopping();
+        assertEquals("Products", productPage.getTitle());
     }
 }
