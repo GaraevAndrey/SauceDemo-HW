@@ -6,9 +6,9 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage {
 
-    private final By USERNAME_INPUT = By.id("user-name");
-    private final By PASSWORD_INPUT = By.id("password");
-    private final By LOGIN_BUTTON = By.id("login-button");
+    private static final By USERNAME_INPUT = By.id("user-name");
+    private static final By PASSWORD_INPUT = By.id("password");
+    private static final By LOGIN_BUTTON = By.id("login-button");
     private final By ERROR = By.xpath("//h3[@data-test='error']");
 
     public LoginPage(WebDriver driver) {
