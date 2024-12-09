@@ -20,7 +20,7 @@ public class ProductOrderTest extends BaseTest {
                 .login(user, password);
         productPage
                 .isOpened()
-                .addToCart("Sauce Labs Backpack")
+                .addToCart(2)
                 .openCart()
                 .openCheckout()
                 .writeFirstName()

@@ -27,9 +27,9 @@ public class ProductPage extends BasePage {
     private final By lastName = By.id("last-name");
     private final By zipName = By.id("postal-code");
     private final By continueButton = By.id("continue");
-    private final By FinishButton = By.id("finish");
+    private final By finishButton = By.id("finish");
     private final By order = By.xpath("//h2[text()='Thank you for your order!']");
-    private final By ContinueShopping = By.id("continue-shopping");
+    private final By continueShopping = By.id("continue-shopping");
 
     public String getTitle() {
         return driver.findElement(titleProd).getText();
@@ -48,8 +48,9 @@ public class ProductPage extends BasePage {
     }
 
     @Step("Добавление товара по индексу")
-    public void addToCart(int index) {
+    public ProductPage addToCart(int index) {
         driver.findElements(addToCartBtn).get(index).click();
+        return this;
     }
 
     @Step("Открываем корзину")
@@ -64,7 +65,7 @@ public class ProductPage extends BasePage {
         return this;
     }
 
-    @Step("Провряем количество товаров в корзине")
+    @Step("Проверяем количество товаров в корзине")
     public String cartIcon() {
         return driver.findElement(cart).getText();
     }
@@ -101,7 +102,7 @@ public class ProductPage extends BasePage {
 
     @Step("Кликаем на finish")
     public ProductPage clickFinish() {
-        driver.findElement(FinishButton).click();
+        driver.findElement(finishButton).click();
         return this;
     }
 
@@ -112,7 +113,7 @@ public class ProductPage extends BasePage {
 
     @Step("Кликаем на continue shopping")
     public ProductPage openContinueShopping() {
-        driver.findElement(ContinueShopping).click();
+        driver.findElement(continueShopping).click();
         return this;
     }
 

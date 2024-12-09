@@ -20,7 +20,7 @@ public class LoginTest extends BaseTest {
         loginPage
                 .open()
                 .login(user, password);
-        assertTrue(productPage.isDisplayed(), "");
+        assertTrue(productPage.isDisplayed());
         assertEquals("Products", productPage.getTitle());
     }
 

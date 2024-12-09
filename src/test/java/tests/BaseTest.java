@@ -37,7 +37,6 @@ public class BaseTest {
             options.addArguments("start-maximized");
             driver = new EdgeDriver(options);
         }
-        driver.get("https://www.saucedemo.com/");
         driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
         context.setAttribute("driver", driver);
         loginPage = new LoginPage(driver);
