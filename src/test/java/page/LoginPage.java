@@ -1,55 +1,48 @@
 package page;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage {
 
-    private final By USERNAME_INPUT = By.id("user-name");
-    private final By PASSWORD_INPUT = By.id("password");
-    private final By LOGIN_BUTTON = By.id("login-button");
-    private final By ERROR = By.xpath("//h3[@data-test='error']");
-    private final By ERROR2 = By.xpath("//h3[@data-test='error']");
-    private final By ERROR3 = By.xpath("//h3[@data-test='error']");
-    private final By ERROR4 = By.xpath("//h3[@data-test='error']");
+    private static final By USERNAME_INPUT = By.id("user-name");
+    private static final By PASSWORD_INPUT = By.id("password");
+    private static final By LOGIN_BUTTON = By.id("login-button");
+    private final By error = By.xpath("//h3[@data-test='error']");
 
-    public LoginPage(WebDriver browser) {
-        super(browser);
+    public LoginPage(WebDriver driver) {
+        super(driver);
     }
 
-    public void open() {
-        browser.get(BASE_URL);
+    @Step("Открытие браузера")
+    public LoginPage open() {
+        driver.get(BASE_URL);
+        return this;
     }
 
-    public void login(String user, String password) {
+    @Step("Вводим данные {user}, {password} и кликаем на кнопку логин")
+    public LoginPage login(String user, String password) {
         fillUserInput(user);
         fillPasswordInput(password);
         clickSubmitBtn();
+        return this;
     }
 
     public void fillUserInput(String user) {
-        browser.findElement(USERNAME_INPUT).sendKeys(user);
+        driver.findElement(USERNAME_INPUT).sendKeys(user);
     }
 
     public void fillPasswordInput(String password) {
-        browser.findElement(PASSWORD_INPUT).sendKeys(password);
+        driver.findElement(PASSWORD_INPUT).sendKeys(password);
     }
 
     public void clickSubmitBtn() {
-        browser.findElement(LOGIN_BUTTON).click();
+        driver.findElement(LOGIN_BUTTON).click();
     }
+
+    @Step("Получаем текст из сообщения об ошибке")
     public String getERROR() {
-        return browser.findElement(ERROR).getText();
-    }
-
-    public String getERROR2() {
-        return browser.findElement(ERROR2).getText();
-    }
-
-    public String getERROR3() {
-        return browser.findElement(ERROR3).getText();
-    }
-    public String getERROR4() {
-        return browser.findElement(ERROR4).getText();
+        return driver.findElement(error).getText();
     }
 }

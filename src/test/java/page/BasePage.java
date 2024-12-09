@@ -1,13 +1,18 @@
 package page;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.PropertyReader;
+
+import java.time.Duration;
 
 public abstract class BasePage {
-    public static final String BASE_URL = "https://www.saucedemo.com/";
+    String BASE_URL = PropertyReader.getProperty("sauceDemo-HW.url");
+    WebDriver driver;
+    WebDriverWait wait;
 
-    WebDriver browser;
-
-    public BasePage(WebDriver browser) {
-        this.browser = browser;
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 }
